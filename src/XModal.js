@@ -1,5 +1,5 @@
 import "./XModal.css";
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const XModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ const XModal = ({ isOpen, onClose }) => {
     onClose();
   };
 
-  const handleOverlayClick = (e) => {
+  /*const handleOverlayClick = (e) => {
     //console.log('Click detected outside modal');
     //console.log('e.target:', e.target);
     //console.log('modalRef.current:', modalRef.current);
@@ -34,7 +34,24 @@ const XModal = ({ isOpen, onClose }) => {
       //console.log('Closing modal');
       handleCloseModal();
     }
-  };
+  };*/
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        //console.log('Closing modal');
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,7 +101,7 @@ const XModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`modal ${isOpen ? 'open' : ''}`} onClick={handleOverlayClick} >
+    <div className={`modal ${isOpen ? 'open' : ''}`} >
       {/* Modal content */}
       <div className="modal-content" id="modal-content" ref={modalRef}>
         {/* Close button */}

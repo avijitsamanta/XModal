@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.button-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid #3498db; /* Border color */
+  color: #fff; /* Text color */
+  background-color: #3498db; /* Background color */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect */
+.button-primary:hover {
+  background-color: #2e86c1; /* Darker background color on hover */
+  border-color: #2e86c1; /* Darker border color on hover */
+  color: #fff; /* Text color on hover */
+}
+
+/* Active effect */
+.button-primary:active {
+  background-color: #1f618d; /* Even darker background color when button is pressed */
+  border-color: #1f618d; /* Even darker border color when button is pressed */
+  color: #fff; /* Text color when button is pressed */
+}
